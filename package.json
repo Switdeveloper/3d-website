@@ -1,12 +1,12 @@
 {
-  "name": "3d-website",
-  "version": "1.0.0",
-  "description": "Interactive 3D cube with Three.js and OrbitControls",
-  "main": "index.html",
-  "scripts": {
-    "start": "python3 -m http.server 8080"
-  },
-  "keywords": ["threejs", "3d", "webgl", "cube"],
-  "author": "Switdeveloper",
-  "license": "MIT"
+ "name": "kicks3d",
+ "version": "2.0.0",
+ "description": "Premium 3D Sneaker Store - Multi-page website with Three.js",
+ "main": "index.html",
+ "scripts": {
+ "start": "python3 -m http.server 8080"
+ },
+ "keywords": ["threejs", "3d", "webgl", "ecommerce", "sneakers", "shoes"],
+ "author": "Switdeveloper",
+ "license": "MIT"
 }

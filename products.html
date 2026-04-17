@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Kicks3D</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Kicks<span>3D</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="cart-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Products Header -->
+    <section class="page-header">
+        <h1>All Products</h1>
+        <p>Discover our full collection of premium sneakers</p>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="running">Running</button>
+            <button class="filter-btn" data-filter="basketball">Basketball</button>
+            <button class="filter-btn" data-filter="skate">Skate</button>
+            <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-page">
+        <div class="products-grid full">
+            <div class="product-card" data-category="running">
+                <div class="product-image placeholder-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <div class="product-info">
+                    <h3>Air Velocity</h3>
+                    <p class="category">Running</p>
+                    <p class="price">$189</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="lifestyle">
+                <div class="product-image placeholder-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <div class="product-info">
+                    <h3>Urban Drift</h3>
+                    <p class="category">Lifestyle</p>
+                    <p class="price">$159</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="basketball">
+                <div class="product-image placeholder-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <div class="product-info">
+                    <h3>Court King</h3>
+                    <p class="category">Basketball</p>
+                    <p class="price">$229</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="skate">
+                <div class="product-image placeholder-img" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                <div class="product-info">
+                    <h3>Street Elite</h3>
+                    <p class="category">Skate</p>
+                    <p class="price">$219</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="running">
+                <div class="product-image placeholder-img" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                <div class="product-info">
+                    <h3>Sprint Pro</h3>
+                    <p class="category">Running</p>
+                    <p class="price">$179</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="lifestyle">
+                <div class="product-image placeholder-img" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+                <div class="product-info">
+                    <h3>Casual Flow</h3>
+                    <p class="category">Lifestyle</p>
+                    <p class="price">$139</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Kicks3D</h3>
+                <p>Premium sneakers with immersive 3D experience.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Kicks3D. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+</body>
+</html>
