@@ -1,0 +1,12 @@
+{
+  "name": "3d-website",
+  "version": "1.0.0",
+  "description": "Interactive 3D cube with Three.js and OrbitControls",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080"
+  },
+  "keywords": ["threejs", "3d", "webgl", "cube"],
+  "author": "Switdeveloper",
+  "license": "MIT"
+}
