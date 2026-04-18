@@ -4,9 +4,22 @@
  "description": "Premium 3D Sneaker Store - Multi-page website with Three.js",
  "main": "index.html",
  "scripts": {
- "start": "python3 -m http.server 8080"
+  "start": "python3 -m http.server 8080"
  },
- "keywords": ["threejs", "3d", "webgl", "ecommerce", "sneakers", "shoes"],
+ "keywords": [
+  "threejs",
+  "3d",
+  "webgl",
+  "ecommerce",
+  "sneakers",
+  "shoes"
+ ],
  "author": "Switdeveloper",
- "license": "MIT"
+ "license": "MIT",
+ "dependencies": {
+  "@radix-ui/react-dialog": "^1.1.15",
+  "@radix-ui/react-tooltip": "^1.2.8",
+  "framer-motion": "^12.38.0",
+  "lucide-react": "^1.8.0"
+ }
 }
