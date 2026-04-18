@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Box - Swit Hub</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .demo-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+        
+        .logo-symbol {
+            font-size: 1.5rem;
+            color: #00d4ff;
+        }
+        
+        .logo-text span {
+            color: #00d4ff;
+            font-weight: 500;
+        }
+        
+        .demo-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .demo-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .demo-subtitle {
+            color: #9CA3AF;
+            margin-bottom: 40px;
+            font-size: 0.9rem;
+        }
+        
+        .prompt-container {
+            background: rgba(31, 32, 35, 0.5);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid #333;
+        }
+        
+        .feature-list {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(31, 32, 35, 0.3);
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00d4ff20, #7c3aed20);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4ff;
+        }
+        
+        .feature-content h3 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .feature-content p {
+            font-size: 0.8rem;
+            color: #9CA3AF;
+        }
+        
+        /* Tooltip styles */
+        [data-radix-popper-content-wrapper] {
+            z-index: 9999 !important;
+        }
+        
+        /* Scrollbar */
+        textarea::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        textarea::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        textarea::-webkit-scrollbar-thumb {
+            background-color: #444;
+            border-radius: 3px;
+        }
+        
+        .output-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid #00d4ff30;
+            border-radius: 16px;
+            min-height: 100px;
+        }
+        
+        .output-title {
+            font-size: 0.8rem;
+            color: #00d4ff;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .output-content {
+            font-size: 0.9rem;
+            color: #D1D5DB;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <div class="logo">
+            <span class="logo-symbol">◈</span>
+            <span class="logo-text">Swit<span>Hub</span></span>
+        </div>
+        <a href="index.html" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem;">← Back to Home</a>
+    </div>
+    
+    <div class="demo-container">
+        <h1 class="demo-title">AI Prompt Box Component</h1>
+        <p class="demo-subtitle">A sleek, interactive prompt input with voice recording, file upload, and mode toggles</p>
+        
+        <div id="prompt-root"></div>
+        
+        <div class="output-section">
+            <div class="output-title">Output</div>
+            <div id="output-content" class="output-content">Your messages will appear here...</div>
+        </div>
+        
+        <div class="feature-list">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" x2="12" y1="19" y2="22"/>
+                    </svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Voice Recording</h3>
+                    <p>Click the mic button to record voice messages with visualizer</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" x2="12" y1="3" y2="15"/>
+                    </svg>
+                </div>
+                <div class="feature-content">
+                    <h3>File Upload</h3>
+                    <p>Upload images via click, drag & drop, or paste from clipboard</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" x2="22" y1="12" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Search Mode</h3>
+                    <p>Toggle web search for enhanced AI responses</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v4"/>
+                        <path d="m16.2 7.8 2.9-2.9"/>
+                        <path d="M18 12h4"/>
+                        <path d="m16.2 16.2 2.9 2.9"/>
+                        <path d="M12 18v4"/>
+                        <path d="m4.9 19.1 2.9-2.9"/>
+                        <path d="M2 12h4"/>
+                        <path d="m4.9 4.9 2.9 2.9"/>
+                    </svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Think Mode</h3>
+                    <p>Enable deep thinking mode for complex reasoning</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m18 16 4-4-4-4"/>
+                        <path d="m6 8-4 4 4 4"/>
+                        <path d="m14.5 4-5 16"/>
+                    </svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Canvas Mode</h3>
+                    <p>Switch to canvas mode for creative generation</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Secure</h3>
+                    <p>10MB file size limit and image-only validation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { PromptInputBox } from './js/ai-prompt-box.js';
+        
+        // Simple React render
+        const root = document.getElementById('prompt-root');
+        const outputContent = document.getElementById('output-content');
+        
+        // Create a simple wrapper since we're not using JSX
+        const container = document.createElement('div');
+        container.className = 'prompt-wrapper';
+        root.appendChild(container);
+        
+        // Mock the component for demo
+        container.innerHTML = `
+            <div class="prompt-box">
+                <textarea 
+                    class="prompt-textarea" 
+                    placeholder="Type your message here..."
+                    rows="1"
+                ></textarea>
+                <div class="prompt-actions">
+                    <div class="prompt-left">
+                        <button class="action-btn" title="Upload image">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                            </svg>
+                        </button>
+                        <button class="action-btn search-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" x2="22" y1="12" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                            <span>Search</span>
+                        </button>
+                        <button class="action-btn think-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18.5a4 4 0 1 0 4.567-1.005 4 4 0 0 0 .556-6.588 4 4 0 0 0-2.526-5.77A3 3 0 1 0 12 5"/>
+                                <path d="M12 8v8"/>
+                                <path d="M8 12h8"/>
+                            </svg>
+                            <span>Think</span>
+                        </button>
+                        <button class="action-btn canvas-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m18 16 4-4-4-4"/>
+                                <path d="m6 8-4 4 4 4"/>
+                                <path d="m14.5 4-5 16"/>
+                            </svg>
+                            <span>Canvas</span>
+                        </button>
+                    </div>
+                    <button class="send-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 19V5"/>
+                            <path d="m5 12 7-7 7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        // Add styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .prompt-box {
+                background: #1F2023;
+                border: 1px solid #444;
+                border-radius: 24px;
+                padding: 16px;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.24);
+            }
+            .prompt-textarea {
+                width: 100%;
+                background: transparent;
+                border: none;
+                color: #fff;
+                font-size: 16px;
+                resize: none;
+                outline: none;
+                min-height: 44px;
+                font-family: inherit;
+            }
+            .prompt-textarea::placeholder {
+                color: #9CA3AF;
+            }
+            .prompt-actions {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 12px;
+                padding-top: 12px;
+                border-top: 1px solid #333;
+            }
+            .prompt-left {
+                display: flex;
+                gap: 8px;
+            }
+            .action-btn {
+                background: transparent;
+                border: none;
+                color: #9CA3AF;
+                cursor: pointer;
+                padding: 8px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                transition: all 0.2s;
+            }
+            .action-btn:hover {
+                background: rgba(255,255,255,0.1);
+                color: #D1D5DB;
+            }
+            .action-btn span {
+                font-size: 12px;
+            }
+            .search-btn.active {
+                background: rgba(30, 174, 219, 0.15);
+                color: #1EAEDB;
+            }
+            .think-btn.active {
+                background: rgba(139, 92, 246, 0.15);
+                color: #8B5CF6;
+            }
+            .canvas-btn.active {
+                background: rgba(249, 115, 22, 0.15);
+                color: #F97316;
+            }
+            .send-btn {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: #fff;
+                border: none;
+                color: #1F2023;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
+            }
+            .send-btn:hover {
+                background: rgba(255,255,255,0.9);
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Add interactivity
+        const textarea = container.querySelector('.prompt-textarea');
+        const sendBtn = container.querySelector('.send-btn');
+        const searchBtn = container.querySelector('.search-btn');
+        const thinkBtn = container.querySelector('.think-btn');
+        const canvasBtn = container.querySelector('.canvas-btn');
+        
+        let modes = { search: false, think: false, canvas: false };
+        
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 200) + 'px';
+        });
+        
+        textarea.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        sendBtn.addEventListener('click', sendMessage);
+        
+        searchBtn.addEventListener('click', () => toggleMode('search'));
+        thinkBtn.addEventListener('click', () => toggleMode('think'));
+        canvasBtn.addEventListener('click', () => toggleMode('canvas'));
+        
+        function toggleMode(mode) {
+            modes[mode] = !modes[mode];
+            const btn = mode === 'search' ? searchBtn : mode === 'think' ? thinkBtn : canvasBtn;
+            btn.classList.toggle('active');
+        }
+        
+        function sendMessage() {
+            const text = textarea.value.trim();
+            if (!text) return;
+            
+            let prefix = '';
+            if (modes.search) prefix += '[Search] ';
+            if (modes.think) prefix += '[Think] ';
+            if (modes.canvas) prefix += '[Canvas] ';
+            
+            const fullMessage = prefix + text;
+            
+            outputContent.innerHTML = `
+                <div style="margin-bottom: 8px;">
+                    <span style="color: #00d4ff; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        ${new Date().toLocaleTimeString()}
+                    </span>
+                </div>
+                <div style="padding: 12px; background: rgba(0, 212, 255, 0.1); border-radius: 8px; border-left: 3px solid #00d4ff;">
+                    ${fullMessage}
+                </div>
+            `;
+            
+            textarea.value = '';
+            textarea.style.height = '44px';
+            
+            // Reset modes
+            modes = { search: false, think: false, canvas: false };
+            searchBtn.classList.remove('active');
+            thinkBtn.classList.remove('active');
+            canvasBtn.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
