@@ -8,26 +8,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Kicks<span>3D</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="cart-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <span class="cart-count">0</span>
-            </div>
-        </div>
-    </nav>
+<!-- Navigation -->
+<nav class="navbar">
+<div class="nav-container">
+<a href="index.html" class="logo">Kicks<span>3D</span></a>
+<ul class="nav-links">
+<li><a href="index.html" class="active">Home</a></li>
+<li><a href="products.html">Products</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-right">
+<div class="cart-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="9" cy="21" r="1"></circle>
+<circle cx="20" cy="21" r="1"></circle>
+<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+</svg>
+<span class="cart-count">0</span>
+</div>
+<button class="hamburger" id="hamburger" aria-label="Toggle menu">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+</div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<ul class="mobile-nav-links">
+<li><a href="index.html" class="active">Home</a></li>
+<li><a href="products.html">Products</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -39,36 +56,60 @@
         <div id="hero-3d"></div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="featured">
-        <h2>Featured Kicks</h2>
-        <div class="products-grid">
-            <div class="product-card" data-product="1">
-                <div class="product-3d" id="shoe-1"></div>
-                <div class="product-info">
-                    <h3>Air Velocity</h3>
-                    <p class="price">$189</p>
-                    <button class="btn-secondary">View Details</button>
-                </div>
-            </div>
-            <div class="product-card" data-product="2">
-                <div class="product-3d" id="shoe-2"></div>
-                <div class="product-info">
-                    <h3>Urban Drift</h3>
-                    <p class="price">$159</p>
-                    <button class="btn-secondary">View Details</button>
-                </div>
-            </div>
-            <div class="product-card" data-product="3">
-                <div class="product-3d" id="shoe-3"></div>
-                <div class="product-info">
-                    <h3>Street Elite</h3>
-                    <p class="price">$219</p>
-                    <button class="btn-secondary">View Details</button>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Featured Products -->
+<section class="featured">
+<h2>Featured Kicks</h2>
+<div class="products-grid">
+<div class="product-card" data-product="1">
+<div class="product-3d" id="shoe-1"></div>
+<div class="product-info">
+<h3>Air Velocity</h3>
+<p class="price">$189</p>
+<button class="btn-secondary">View Details</button>
+</div>
+</div>
+<div class="product-card" data-product="2">
+<div class="product-3d" id="shoe-2"></div>
+<div class="product-info">
+<h3>Urban Drift</h3>
+<p class="price">$159</p>
+<button class="btn-secondary">View Details</button>
+</div>
+</div>
+<div class="product-card" data-product="3">
+<div class="product-3d" id="shoe-3"></div>
+<div class="product-info">
+<h3>Street Elite</h3>
+<p class="price">$219</p>
+<button class="btn-secondary">View Details</button>
+</div>
+</div>
+<div class="product-card" data-product="13">
+<div class="product-3d" id="shoe-4"></div>
+<div class="product-info">
+<h3>Pegasus 40</h3>
+<p class="price">$130</p>
+<button class="btn-secondary">View Details</button>
+</div>
+</div>
+<div class="product-card" data-product="15">
+<div class="product-3d" id="shoe-5"></div>
+<div class="product-info">
+<h3>Jordan 4 Retro</h3>
+<p class="price">$210</p>
+<button class="btn-secondary">View Details</button>
+</div>
+</div>
+<div class="product-card" data-product="31">
+<div class="product-3d" id="shoe-6"></div>
+<div class="product-info">
+<h3>Ultraboost Light</h3>
+<p class="price">$200</p>
+<button class="btn-secondary">View Details</button>
+</div>
+</div>
+</div>
+</section>
 
     <!-- Categories -->
     <section class="categories">
@@ -132,5 +173,6 @@
     }
     </script>
     <script type="module" src="js/main.js"></script>
+<script src="js/mobile-menu.js"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 // Hero 3D Scene
 document.addEventListener('DOMContentLoaded', () => {
- initHeroScene();
- initFeaturedScenes();
- initCart();
+initHeroScene();
+initFeaturedScenes();
+initCart();
 });
 
 function initHeroScene() {
@@ -21,11 +21,11 @@ function initHeroScene() {
  renderer.setClearColor(0x000000, 0);
  container.appendChild(renderer.domElement);
 
- // Create multiple floating cubes to represent shoes
- const shoes = [];
- const colors = [0xff6b35, 0x004e89, 0x00c9a7, 0x9b5de5, 0xf15bb5];
- 
- for (let i = 0; i < 5; i++) {
+// Create multiple floating cubes to represent shoes
+  const shoes = [];
+  const colors = [0xff6b35, 0x004e89, 0x00c9a7, 0x9b5de5, 0xf15bb5, 0x00ff00, 0xff69b4, 0x4169e1];
+
+  for (let i = 0; i < 8; i++) {
  const geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
  const material = new THREE.MeshStandardMaterial({
  color: colors[i],
@@ -105,9 +105,9 @@ function initHeroScene() {
 }
 
 function initFeaturedScenes() {
- // Initialize 3D scenes for featured products
- const featuredContainers = ['shoe-1', 'shoe-2', 'shoe-3'];
- const colors = [0xff6b35, 0x004e89, 0x00c9a7];
+  // Initialize 3D scenes for featured products
+  const featuredContainers = ['shoe-1', 'shoe-2', 'shoe-3', 'shoe-4', 'shoe-5', 'shoe-6'];
+  const colors = [0xff6b35, 0x004e89, 0x00c9a7, 0x9b5de5, 0xf15bb5, 0x00ff00];
  
  featuredContainers.forEach((id, index) => {
  const container = document.getElementById(id);
